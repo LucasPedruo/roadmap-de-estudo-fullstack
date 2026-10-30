@@ -8,6 +8,18 @@ documentação oficial e vídeos.
 **Este guia é independente.** Você não precisa abrir o código do projeto para
 estudar. Tudo que o projeto usa está explicado aqui, em texto.
 
+## Os três documentos desta pasta
+
+| Arquivo | O que é | Quando usar |
+|---|---|---|
+| **README.md** | Este roteiro. 126 tópicos em ordem de estudo, com referências e vídeos. | Para estudar por trilha, do começo ao fim. |
+| **[dicionario-de-termos.md](dicionario-de-termos.md)** | Dicionário de jargão. Tradução literal, a armadilha de cada termo, o que ele é de verdade, analogia e o trade-off. | Quando alguém falar uma palavra que você não conhece. |
+| **[mapa-novus-crm.md](mapa-novus-crm.md)** | Versão curta, focada na estrutura do repositório do produto. | Para se localizar no código, quando tiver acesso a ele. |
+
+O [Apêndice A](#apêndice-a-glossário) deste roteiro tem um glossário de consulta
+rápida com cerca de 200 termos. O dicionário é a versão longa e explicada dos
+mesmos termos, com o porquê de cada um.
+
 ---
 
 ## Como usar
