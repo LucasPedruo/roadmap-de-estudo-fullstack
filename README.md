@@ -1,24 +1,42 @@
-# Roadmap Novus CRM
+# Roadmap do desenvolvedor full stack
 
-Roteiro de estudo para desenvolvedor iniciante que vai trabalhar na plataforma
-Novus CRM. No formato do [roadmap.sh](https://roadmap.sh): uma árvore de
-tópicos, cada um com explicação, contexto de uso e referências com
-documentação oficial e vídeos.
+Roteiro de estudo para quem está começando na programação e vai trabalhar num
+produto web de verdade, com backend em .NET e interfaces em React. No formato
+do [roadmap.sh](https://roadmap.sh): uma árvore de tópicos, cada um com
+explicação, contexto de uso e referências com documentação oficial e vídeos.
 
-**Este guia é independente.** Você não precisa abrir o código do projeto para
-estudar. Tudo que o projeto usa está explicado aqui, em texto.
+**Este guia é independente.** Você não precisa de acesso a código nenhum para
+estudar. Todo conceito está explicado aqui, em texto.
 
-## Os três documentos desta pasta
+## Os dois documentos desta pasta
 
 | Arquivo | O que é | Quando usar |
 |---|---|---|
 | **README.md** | Este roteiro. 126 tópicos em ordem de estudo, com referências e vídeos. | Para estudar por trilha, do começo ao fim. |
 | **[dicionario-de-termos.md](dicionario-de-termos.md)** | Dicionário de jargão. Tradução literal, a armadilha de cada termo, o que ele é de verdade, analogia e o trade-off. | Quando alguém falar uma palavra que você não conhece. |
-| **[mapa-novus-crm.md](mapa-novus-crm.md)** | Versão curta, focada na estrutura do repositório do produto. | Para se localizar no código, quando tiver acesso a ele. |
 
 O [Apêndice A](#apêndice-a-glossário) deste roteiro tem um glossário de consulta
 rápida com cerca de 200 termos. O dicionário é a versão longa e explicada dos
 mesmos termos, com o porquê de cada um.
+
+## A stack deste roteiro
+
+O conteúdo é organizado em volta de um conjunto de tecnologias que aparece
+muito no mercado brasileiro:
+
+| Camada | Tecnologia |
+|---|---|
+| Interface web | React, Next.js, Vite, Tailwind, TypeScript |
+| Mobile | React Native com Expo |
+| Backend | C# e .NET, ASP.NET Core |
+| Banco | PostgreSQL com Entity Framework Core |
+| Mensageria e cache | RabbitMQ e Redis |
+| Tempo real | SignalR e WebSocket |
+| Identidade | Keycloak, OAuth 2 e OpenID Connect |
+| Entrega | Docker, Kubernetes e esteira de build automática |
+
+Boa parte do roteiro vale para qualquer stack. Camadas, banco, filas, segurança
+e entrega mudam de ferramenta e não mudam de conceito.
 
 ---
 
@@ -27,7 +45,7 @@ mesmos termos, com o porquê de cada um.
 Cada tópico tem a mesma estrutura:
 
 - **O que é**: a explicação do conceito, do zero.
-- **No Novus CRM**: como o conceito aparece na plataforma, descrito em texto.
+- **Na prática**: como o conceito aparece num produto real, com o detalhe que a documentação oficial não conta.
 - **Referências**: onde estudar.
 
 Marcadores dos links:
@@ -70,7 +88,7 @@ flowchart TD
     P10 --> P11["Parte 11<br/>Filas, cache, tempo real"]
     P11 --> P12["Parte 12<br/>Segurança"]
     P12 --> P13["Parte 13<br/>Docker, CI/CD, observabilidade"]
-    P7 --> P14["Parte 14<br/>Domínio do produto"]
+    P7 --> P14["Parte 14<br/>Domínio: CRM"]
     P13 --> P14
     P14 --> P15["Parte 15<br/>Processo de trabalho"]
 ```
@@ -221,9 +239,9 @@ O índice abaixo tem a mesma informação.
 [13.8](#138-observabilidade) Observabilidade ·
 [13.9](#139-opentelemetry-e-prometheus) OpenTelemetry
 
-**[Parte 14. O domínio do produto](#parte-14-o-domínio-do-produto)**
+**[Parte 14. O domínio: CRM e atendimento](#parte-14-o-domínio-crm-e-atendimento)**
 [14.1](#141-o-que-é-um-crm-de-atendimento) O que é o produto ·
-[14.2](#142-vocabulário-da-plataforma) Vocabulário ·
+[14.2](#142-vocabulário-do-domínio) Vocabulário ·
 [14.3](#143-canais-de-mensagem) Canais ·
 [14.4](#144-telefonia-sip-pbx-e-webrtc) Telefonia ·
 [14.5](#145-ia-aplicada-llm-embeddings-e-rag) IA aplicada ·
@@ -263,7 +281,7 @@ Quem pula essa base trava mais tarde em coisas que parecem de framework, mas
 são de lógica. Um exemplo comum é não conseguir transformar uma lista de um
 formato em outro.
 
-**No Novus CRM**
+**Na prática**
 
 Transformar lista aparece todo dia. A API devolve uma lista de registros num
 formato e a tela precisa de outro. Esse trabalho de converter tem nome no
@@ -287,7 +305,7 @@ esconder: o modelo de caixa, que explica por que um elemento ocupa mais espaço
 do que você mandou, e flexbox e grid, que são as duas formas modernas de
 posicionar coisas.
 
-**No Novus CRM**
+**Na prática**
 
 As telas usam Tailwind, que é CSS escrito em classes curtas. Sem entender
 flexbox, as classes do Tailwind viram tentativa e erro.
@@ -310,7 +328,7 @@ A linguagem que roda no navegador. O que mais importa aqui: funções de seta,
 desestruturação, espalhamento, módulos com import e export, promessas com
 `async` e `await`, e os métodos de array `map`, `filter`, `reduce` e `find`.
 
-**No Novus CRM**
+**Na prática**
 
 Todo o frontend é JavaScript tipado. Os métodos de array substituem o que no
 Angular você faria com pipes e operadores do RxJS.
@@ -338,7 +356,7 @@ em geral em formato JSON, e desenha a tela com eles. Quando uma aplicação é
 lenta ou quebra, o primeiro passo do diagnóstico é descobrir em qual das
 metades o problema está.
 
-**No Novus CRM**
+**Na prática**
 
 Existem três metades, não duas. O navegador fala com o servidor das telas, que
 é feito em Next.js. Esse servidor fala com a API, que é feita em .NET. O
@@ -374,7 +392,7 @@ No Windows existem três terminais diferentes e eles não são iguais. O PowerSh
 O WSL roda um Linux de verdade por dentro. Saber qual você está usando evita uma
 hora de confusão com um comando que "não existe".
 
-**No Novus CRM**
+**Na prática**
 
 Todo comando de trabalho é digitado. Subir uma aplicação, rodar teste, gerar
 migração de banco, construir imagem. A documentação do projeto assume terminal.
@@ -409,7 +427,7 @@ Um **commit** é uma foto completa do projeto num instante, com autor, data e
 mensagem. Ele não guarda só a diferença, apesar de o Git mostrar diferença na
 hora de ler.
 
-**No Novus CRM**
+**Na prática**
 
 O repositório é um só e guarda backend, telas e documentação juntos. O histórico
 de uma das aplicações é antigo e foi preservado numa migração de repositório, o
@@ -439,10 +457,16 @@ Três comandos de resgate que você vai usar cedo:
 - `git reset --soft HEAD~1` desfaz o último commit e mantém o conteúdo.
 - `git stash` guarda o trabalho pela metade numa gaveta e limpa a mesa.
 
-**No Novus CRM**
+**Na prática**
 
-A regra é não fazer commit nem push sem pedido. Trabalho em andamento fica no
-seu branch e entra na linha principal por Pull Request.
+Combine com o time antes de enviar qualquer coisa. Muitos projetos tratam a
+linha principal como intocável e aceitam entrada só por Pull Request. Trabalho
+em andamento fica no seu branch, e quanto mais cedo você abre o Pull Request,
+mais cedo a revisão acontece.
+
+Um hábito que vale adotar: antes de qualquer envio, rode `git diff` e leia o que
+está indo. É assim que você descobre o arquivo de configuração local que entrou
+sem querer.
 
 **Referências**
 
@@ -469,7 +493,7 @@ você tivesse começado depois, o que deixa o histórico em linha reta.
 O Git não escolhe por você. Ele marca o trecho e espera a decisão humana. Não é
 erro, é a ferramenta pedindo ajuda.
 
-**No Novus CRM**
+**Na prática**
 
 O nome do branch começa com o número do cartão de tarefa, seguido de uma
 descrição curta com hífens. A linha principal se chama `master` e é o que está
@@ -499,10 +523,15 @@ Receber revisão é parte do trabalho e não é crítica pessoal. Comentar o có
 de outra pessoa também é habilidade. A pergunta costuma funcionar melhor que a
 afirmação.
 
-**No Novus CRM**
+**Na prática**
 
-O repositório fica no Azure DevOps, não no GitHub. A mecânica é a mesma. O
-cartão de tarefa é vinculado ao Pull Request pelo número dele.
+Nem todo time usa GitHub. Azure DevOps, GitLab e Bitbucket têm o mesmo conceito
+com nomes um pouco diferentes, e em alguns deles a tela chama Merge Request. A
+mecânica é a mesma.
+
+O que costuma ser padrão em qualquer um: o cartão de tarefa é vinculado ao Pull
+Request pelo número, para que daqui a um ano alguém consiga descobrir por que
+aquele código existe.
 
 **Referências**
 
@@ -529,7 +558,7 @@ Os tipos mais usados são `feat` para funcionalidade nova, `fix` para correção
 O ganho não é estético. Com padrão, dá para gerar changelog automático, filtrar
 histórico por tipo e entender uma lista de 50 commits em um minuto.
 
-**No Novus CRM**
+**Na prática**
 
 A mensagem é escrita em português, em minúscula, sem ponto final. O escopo é a
 área tocada, como `admin`, `backend` ou `monorepo`. Um exemplo real do
@@ -555,7 +584,7 @@ O que vale configurar logo: formatação ao salvar, busca em todos os arquivos,
 ir para a definição de um símbolo com F12, e o depurador com pontos de parada.
 Aprender a depurar passo a passo economiza mais tempo do que qualquer atalho.
 
-**No Novus CRM**
+**Na prática**
 
 A formatação do código TypeScript é feita por uma ferramenta própria do projeto
 e roda por comando. Não dependa só do editor.
@@ -586,7 +615,7 @@ Dois conceitos do Node aparecem o tempo todo. O **event loop** explica como uma
 linguagem de uma thread só consegue atender muitas coisas ao mesmo tempo, sem
 travar. E **npm**, o registro público de onde vêm os pacotes de terceiros.
 
-**No Novus CRM**
+**Na prática**
 
 O projeto não usa o Node para rodar comando, usa o Bun. Mas o ecossistema é o
 mesmo e, em produção, as aplicações Next ainda rodam sobre Node.
@@ -612,16 +641,16 @@ Os comandos equivalem ao que você já conhece. `bun install` instala.
 `bun run <script>` executa um script. `bunx` roda uma ferramenta sem instalar,
 como o `npx`.
 
-**No Novus CRM**
+**Na prática**
 
-Bun é o único gerenciador permitido. Usar `npm`, `npx`, `yarn` ou `pnpm` está
-proibido por escrito no guia do repositório. O motivo é concreto: cada
-gerenciador escreve um arquivo de trava próprio, e dois arquivos de trava no
-mesmo projeto fazem a esteira de build falhar para todo mundo.
+Projeto que adota Bun costuma proibir os outros gerenciadores por escrito. Não é
+preferência estética. Cada gerenciador escreve um arquivo de trava próprio, e
+dois arquivos de trava no mesmo projeto fazem a esteira de build falhar para
+todo mundo.
 
-Outra regra: `bun install` roda só na raiz do repositório. Rodar dentro de uma
-aplicação cria uma segunda instalação isolada e quebra o compartilhamento de
-código entre as pastas.
+A segunda regra que acompanha: em monorepo, `bun install` roda só na raiz. Rodar
+dentro de uma aplicação cria uma instalação isolada e quebra o compartilhamento
+de código entre as pastas.
 
 **Referências**
 
@@ -647,7 +676,7 @@ final não precisa carregar a segunda lista.
 **Script** é um atalho de comando. Quando você vê `bun run dev`, existe uma
 linha no `package.json` dizendo o que `dev` significa naquele projeto.
 
-**No Novus CRM**
+**Na prática**
 
 Existe um `package.json` na raiz, com os atalhos gerais, e um em cada aplicação
 e pacote. Os atalhos da raiz são os que o time usa no dia a dia, como subir uma
@@ -678,7 +707,7 @@ O **lockfile** resolve isso. Ele anota a versão exata de cada dependência, e d
 cada dependência das dependências. Com ele, todo mundo instala exatamente a
 mesma árvore, inclusive a máquina que monta a imagem de produção.
 
-**No Novus CRM**
+**Na prática**
 
 O lockfile é único e fica na raiz. A esteira de build instala com a opção que
 proíbe recalcular o arquivo. Se faltar algum manifesto na hora de montar a
@@ -712,16 +741,17 @@ JavaScript. Você declara quais pastas são projetos e o gerenciador instala tud
 de uma vez, numa pasta compartilhada. Um projeto consegue importar o outro pelo
 nome, como se fosse pacote publicado, sem publicar nada.
 
-**No Novus CRM**
+**Na prática**
 
-O repositório junta um backend em .NET, oito aplicações de interface e um
-conjunto de pacotes compartilhados. As duas stacks convivem, mas têm cadeias de
-ferramentas separadas. Não existe um comando único que construa tudo.
+Um monorepo típico de produto SaaS junta um backend, várias interfaces e um
+conjunto de pacotes compartilhados. Quando as duas pontas usam linguagens
+diferentes, as cadeias de ferramentas convivem e não se misturam. Não existe um
+comando único que construa tudo, e isso surpreende quem chega.
 
-As aplicações de interface são: a web que os clientes usam, um painel interno,
-um site de marketing, uma página de status, um widget de chat para colar em site
-de terceiro, um aplicativo mobile, a documentação pública e um serviço de borda
-para plugins.
+As interfaces costumam ser mais do que uma. A aplicação que o cliente usa, um
+painel interno para o time de suporte, um site de marketing, uma página pública
+de status, um widget para embutir em site de terceiro, um aplicativo mobile e a
+documentação. Cada uma com restrição própria, o que é o assunto da parte 7.
 
 **Referências**
 
@@ -752,7 +782,7 @@ Para isso funcionar, cada tarefa precisa declarar o que produz. Se um arquivo de
 saída ficar fora da lista, o cache passa a mentir, devolvendo resultado
 incompleto.
 
-**No Novus CRM**
+**Na prática**
 
 O backend em .NET fica fora do Turborepo, de propósito. Ele tem a própria cadeia
 de ferramentas. Um segundo build sem mudanças nas telas deve terminar na hora,
@@ -782,7 +812,7 @@ muito mais rápido, com um arquivo de configuração só.
 A ideia por trás é tirar a discussão de estilo da revisão de código. Se a
 máquina formata, ninguém gasta comentário com vírgula.
 
-**No Novus CRM**
+**Na prática**
 
 A configuração é compartilhada entre as aplicações e barra algumas coisas de
 propósito: o tipo `any`, o `enum` do TypeScript, exportação padrão fora dos
@@ -818,7 +848,7 @@ importante é a checagem de nulo. Com ela ligada, se um valor pode ser
 `undefined`, o compilador obriga você a tratar esse caso antes de usar. É
 chato no começo e elimina a classe de erro mais comum em produção.
 
-**No Novus CRM**
+**Na prática**
 
 Todas as aplicações rodam em modo strict. O tipo `any` é proibido pelo lint,
 porque ele desliga a verificação inteira naquele ponto e o erro reaparece mais
@@ -862,7 +892,7 @@ function tratar(r: Resultado) {
 }
 ```
 
-**No Novus CRM**
+**Na prática**
 
 Esse é o contrato de retorno de toda função que fala com a API a partir das
 telas. Ou veio o dado, ou veio o erro. A tela é obrigada a tratar os dois casos,
@@ -889,7 +919,7 @@ exatamente o tipo que entrou.
 
 O conceito é o mesmo em C#, o que ajuda quando você atravessar para o backend.
 
-**No Novus CRM**
+**Na prática**
 
 Aparece nas funções que fazem chamada à API. A função é uma só e o tipo de
 resposta muda a cada chamada. Aparece também nos componentes de tabela, que
@@ -970,7 +1000,7 @@ const contatoSchema = z.object({
 type Contato = z.infer<typeof contatoSchema>;
 ```
 
-**No Novus CRM**
+**Na prática**
 
 Todo formulário tem um arquivo de schema com as regras de validação. A mensagem
 de erro que o usuário lê sai dali, e passa por revisão de texto antes de entrar.
@@ -999,7 +1029,7 @@ Isso parece trabalho dobrado e paga em dois momentos. Quando a API mudar, só a
 conversão muda. E quando a tela precisar de um formato diferente, ela não
 distorce o contrato da API.
 
-**No Novus CRM**
+**Na prática**
 
 A convenção de nomes é explícita. O tipo que espelha a API termina em `Dto`. O
 tipo da interface termina em `View`. A conversão fica em arquivos chamados
@@ -1037,7 +1067,7 @@ A mudança de mentalidade: no Angular o template é um arquivo com uma linguagem
 própria. No React o template é código normal, e por isso você usa `if`, `map` e
 funções comuns em vez de diretivas.
 
-**No Novus CRM**
+**Na prática**
 
 A convenção é uma pasta por componente, com um arquivo chamado `component.tsx`
 dentro. Não existe arquivo índice que reexporta tudo, o chamado barrel, porque
@@ -1105,7 +1135,7 @@ pessoas fazem nele poderia ser calculado direto durante a renderização, ou
 acontecer no evento que causou a mudança. A documentação oficial tem uma página
 só sobre isso e vale a leitura.
 
-**No Novus CRM**
+**Na prática**
 
 Existem hooks próprios compartilhados entre telas. Os que lidam com dados em
 tempo real seguem o padrão de nome `use-algo-stream`.
@@ -1153,7 +1183,7 @@ Essa é a diferença filosófica com o Angular, que usa mais injeção e heranç
 React, reaproveitamento acontece por composição de componentes e por hooks
 compartilhados.
 
-**No Novus CRM**
+**Na prática**
 
 É o que permite os componentes de moldura, como cabeçalho de página, painel e
 gaveta, funcionarem com qualquer conteúdo dentro.
@@ -1251,7 +1281,7 @@ instantânea, custo quase zero. Só serve para conteúdo que não muda por usuá
 **ISR**, regeneração incremental. Um meio termo, em que a página estática é
 refeita de tempos em tempos.
 
-**No Novus CRM**
+**Na prática**
 
 As três estratégias convivem, uma por aplicação. A web dos clientes usa
 renderização no servidor, porque mostra dado privado e precisa de sessão. O site
@@ -1282,11 +1312,12 @@ falha. `not-found` aparece quando o registro não existe.
 Pasta com nome entre colchetes vira parâmetro. `[id]` captura qualquer valor
 naquela posição da URL.
 
-**No Novus CRM**
+**Na prática**
 
-A regra interna é que o arquivo de página só busca dado e repassa. A tela de
-verdade fica num componente separado, numa pasta por domínio. Isso mantém as
-rotas curtas e as telas testáveis.
+Uma convenção que funciona bem: o arquivo de página só busca dado e repassa. A
+tela de verdade fica num componente separado, numa pasta por domínio. Isso
+mantém as rotas curtas, evita página de mil linhas e deixa a tela testável sem
+subir o roteador.
 
 **Referências**
 
@@ -1320,7 +1351,7 @@ marque como cliente só a folha que realmente precisa interagir.
 Uma limitação importante: um Server Component não pode ser importado dentro de
 um Client Component. O caminho é passá-lo como `children`.
 
-**No Novus CRM**
+**Na prática**
 
 O arquivo de página nunca leva `"use client"`. Quando uma tela precisa de
 interação, a parte interativa é extraída para um arquivo próprio.
@@ -1349,7 +1380,7 @@ público. E é, na prática.
 
 Marca-se com a linha `"use server"` no topo do arquivo.
 
-**No Novus CRM**
+**Na prática**
 
 As Server Actions são o único caminho das telas para a API em .NET. Toda ação
 confere a sessão antes de qualquer coisa e devolve um resultado no formato de
@@ -1381,7 +1412,7 @@ símbolo girando no meio do vazio.
 O **error** captura a falha e mostra uma tela de recuperação, com botão de
 tentar de novo. Ele precisa ser um Client Component.
 
-**No Novus CRM**
+**Na prática**
 
 Existe uma regra explícita: falha ao carregar nunca pode virar lista vazia. A
 página lança o erro e a tela de erro aparece. Lista vazia mentiria para o
@@ -1406,7 +1437,7 @@ a área de login convivem com molduras diferentes.
 Pasta entre colchetes é uma **rota dinâmica**. Captura um pedaço variável da
 URL, como o identificador de um registro.
 
-**No Novus CRM**
+**Na prática**
 
 A web dos clientes tem grupos separados para a aplicação principal, para as
 telas de login e cadastro, e para um painel voltado ao cliente final, que é
@@ -1435,7 +1466,7 @@ funcionar.
 Regra de ouro: interceptar o pedido não substitui conferir a permissão no
 servidor e na API. Esconder um link do menu é aparência, não segurança.
 
-**No Novus CRM**
+**Na prática**
 
 Existe um arquivo de regras que diz qual perfil pode ver qual rota, e ele tem
 testes automatizados. Há também uma lista de exceções para endereços que
@@ -1464,7 +1495,7 @@ por caminho ou por etiqueta.
 O comportamento padrão mudou bastante entre versões. Confie na documentação da
 versão que o projeto usa, não em tutorial de dois anos atrás.
 
-**No Novus CRM**
+**Na prática**
 
 As telas usam invalidação explícita depois de gravar. Quando você cria um
 registro e a lista não mostra, o lugar de olhar é a invalidação, não a API.
@@ -1490,7 +1521,7 @@ de API e chave de serviço. A regra crítica: em projetos de frontend, qualquer
 variável com o prefixo público é embutida no JavaScript entregue ao navegador.
 Nunca coloque segredo numa variável pública.
 
-**No Novus CRM**
+**Na prática**
 
 Cada aplicação tem o próprio arquivo de ambiente local, criado a partir de um
 exemplo versionado. Existe um modo de autenticação simulada para desenvolvimento,
@@ -1529,7 +1560,7 @@ Um detalhe que pega iniciante: o Tailwind inclui um reset que remove estilos
 padrão do navegador. Por isso um botão não vem com cursor de mão
 automaticamente.
 
-**No Novus CRM**
+**Na prática**
 
 Existe a regra de sempre colocar a classe de cursor no que é clicável, por causa
 desse reset. Cor nunca é escrita direto, sai sempre de um nome definido no tema.
@@ -1559,7 +1590,7 @@ Existem dois níveis. O token primitivo é a cor crua, como um tom específico d
 azul. O token semântico é o papel, e aponta para um primitivo. Componentes só
 usam o semântico.
 
-**No Novus CRM**
+**Na prática**
 
 Os tokens ficam num pacote separado, que não depende de React nem de navegador.
 Isso é proposital: o aplicativo mobile usa os mesmos tokens, e React Native não
@@ -1595,15 +1626,15 @@ compartilhado e o que fica na aplicação. A regra que funciona: se o componente
 precisa conhecer um tipo do domínio, ou chamar uma função do servidor, ele fica
 na aplicação.
 
-**No Novus CRM**
+**Na prática**
 
-O pacote compartilhado tem 64 componentes e é usado por cinco interfaces
-diferentes. Mudar a assinatura de um botão afeta todas ao mesmo tempo, então
-propriedade nova entra como opcional e renomear propriedade exige varrer todos
-os consumidores.
+Num produto com várias interfaces, o pacote compartilhado costuma passar de
+cinquenta componentes. Mudar a assinatura de um botão afeta todas as telas ao
+mesmo tempo, então propriedade nova entra como opcional e renomear propriedade
+exige varrer todos os consumidores antes.
 
-Alguns componentes ficaram de fora de propósito, porque dependem de dados da
-aplicação ou carregariam bibliotecas pesadas para quem não usa.
+Sempre fica algo de fora de propósito. Componente que depende de dado do
+domínio, ou que carrega uma biblioteca pesada que só uma das telas usa.
 
 **Referências**
 
@@ -1627,7 +1658,7 @@ Radix entrega esse comportamento sem nenhuma aparência. Você recebe a mecânic
 correta e aplica o seu próprio estilo. É a base de vários design systems
 modernos.
 
-**No Novus CRM**
+**Na prática**
 
 Os componentes base de diálogo, gaveta, menu, aba e balão de ajuda são
 construídos sobre o Radix, com o estilo da casa aplicado por cima.
@@ -1656,7 +1687,7 @@ Além da mecânica, existe o comportamento esperado de um formulário sério:
 mostrar erro no campo certo, no momento certo; desabilitar o botão durante o
 envio; e avisar antes de descartar alterações não salvas.
 
-**No Novus CRM**
+**Na prática**
 
 Existe regra explícita de proteção contra perda de dados. Todo formulário em
 gaveta ou diálogo guarda o estado inicial, compara com o atual e, se houver
@@ -1689,7 +1720,7 @@ precisa voltar a um ponto específico.
 A biblioteca usual separa a lógica da aparência. Ela cuida de ordenação, filtro
 e seleção, e você desenha a tabela como quiser.
 
-**No Novus CRM**
+**Na prática**
 
 A tabela com busca usa pesquisa automática com pequeno atraso depois da última
 tecla, sem botão de pesquisar. A paginação é sempre rolagem infinita. Existe até
@@ -1720,7 +1751,7 @@ Famílias de biblioteca que aparecem em telas específicas do produto:
 Você não precisa estudar todas agora. Vale saber que existem e o que cada uma
 resolve, para procurar a certa quando a tarefa aparecer.
 
-**No Novus CRM**
+**Na prática**
 
 O editor de fluxo é a tela em que o cliente monta o chatbot. O construtor visual
 é usado nas páginas montadas pelo cliente. O arrastar e soltar aparece no
@@ -1751,7 +1782,7 @@ por mais de um sinal, nunca só por cor.
 
 Quem acerta essas cinco já está à frente da maioria dos produtos.
 
-**No Novus CRM**
+**Na prática**
 
 Os componentes base cuidam de boa parte disso. No aplicativo mobile existe regra
 numérica: todo alvo de toque tem no mínimo 44 pontos.
@@ -1784,7 +1815,7 @@ otimizados.
 A diferença para o Next é que não existe servidor de aplicação. O resultado é um
 punhado de arquivos que qualquer servidor web entrega.
 
-**No Novus CRM**
+**Na prática**
 
 Duas interfaces usam Vite. A página pública de status, porque precisa continuar
 no ar mesmo quando o resto cai, e o widget de chat, que é colado no site de
@@ -1813,7 +1844,7 @@ resposta, sabe quando ela ficou velha, refaz a busca quando você volta para a
 aba e trata carregamento e erro de forma uniforme. Resolve com poucas linhas o
 que normalmente vira um emaranhado de `useEffect` e estados soltos.
 
-**No Novus CRM**
+**Na prática**
 
 A página de status usa os dois. Ela consulta a API de monitoramento a cada
 minuto e guarda uma cópia local dos dados públicos, para mostrar alguma coisa se
@@ -1840,7 +1871,7 @@ derrubar.
 mais pesa: título e descrição únicos por página, estrutura de cabeçalhos
 coerente, endereço limpo, imagem otimizada, e velocidade de carregamento.
 
-**No Novus CRM**
+**Na prática**
 
 O site de marketing é exportado como estático e servido por um servidor web
 simples. Isso proíbe uma lista de recursos do framework: nada de função no
@@ -1869,15 +1900,16 @@ porque você está gastando a banda e o tempo de carregamento de um site que nã
 seu. E a política de segurança precisa permitir ser embutido em qualquer
 domínio, o que é o oposto do que se faz numa aplicação interna.
 
-**No Novus CRM**
+**Na prática**
 
-O widget de chat não tem autenticação. O identificador que ele recebe é público
-e aparece no código fonte do site do cliente. Ele serve só para abrir conversa
-naquele canal.
+Um widget de chat embutido costuma não ter autenticação. O identificador que ele
+recebe é público e aparece no código fonte da página que o hospeda. Ele serve só
+para abrir conversa naquele canal, e tratá-lo como segredo é engano.
 
-Existe uma regra dura: o endereço da rota do widget não muda de nome. Um script
-já colado no site de centenas de clientes valida esse endereço antes de criar o
-quadro. Renomear derrubaria todos de uma vez.
+A regra dura desse tipo de produto: o endereço da rota não muda de nome. O
+script de carregamento já está colado no site de cada cliente e costuma validar
+esse endereço antes de criar o quadro. Renomear derruba todos de uma vez, e a
+correção depende de cada cliente trocar o script.
 
 **Referências**
 
@@ -1902,7 +1934,7 @@ projeto nativo à mão. O **Expo Router** traz o mesmo conceito de pasta vira ro
 O que não transfere do web: nada do navegador, nada de CSS, e o teclado, o toque
 e o ciclo de vida do aplicativo são preocupações novas.
 
-**No Novus CRM**
+**Na prática**
 
 O aplicativo mantém os próprios componentes visuais e compartilha com a web só
 os tokens e as regras puras, pelo pacote que não depende de plataforma.
@@ -1944,10 +1976,11 @@ Vocabulário do mundo .NET que aparece o tempo todo:
 - **Solução** é um arquivo que agrupa vários projetos.
 - **NuGet** é o repositório de pacotes, o equivalente ao npm.
 
-**No Novus CRM**
+**Na prática**
 
-O backend usa .NET na versão 10 e tem 19 projetos numa solução só. Alguns são
-bibliotecas, outros são programas que rodam de verdade.
+Um backend .NET de porte médio costuma ter entre dez e vinte projetos numa
+solução só. A maioria é biblioteca, e só alguns são programas que rodam de
+verdade: a API, os processos de segundo plano e eventuais serviços separados.
 
 **Referências**
 
@@ -1975,7 +2008,7 @@ Existem também os `record`, que são classes feitas para guardar dados, com
 comparação por valor em vez de por identidade. E `struct`, que é tipo de valor
 feito sob medida.
 
-**No Novus CRM**
+**Na prática**
 
 As classes que representam coisas do negócio ficam na camada de domínio. Cada
 uma vira uma tabela no banco. Exemplos: ticket, contato, atendimento, campanha,
@@ -2010,12 +2043,15 @@ Os modificadores de acesso controlam quem enxerga o quê. `public` é visível p
 todos, `private` só dentro da própria classe, `protected` também para as classes
 que herdam, `internal` só dentro do mesmo projeto.
 
-**No Novus CRM**
+**Na prática**
 
-Existe uma armadilha real e documentada ligada a construtor. A classe base das
-entidades não gera identificador automaticamente. Se a classe nova não gerar o
-seu no construtor, dois registros nascem com o mesmo valor vazio. O primeiro
-grava e o segundo falha com erro de chave duplicada. Já aconteceu duas vezes.
+Existe uma armadilha clássica ligada a construtor, e ela derruba produção. Se a
+classe base das entidades não gera o identificador sozinha, e a classe nova
+também não gera no construtor, dois registros nascem com o mesmo valor vazio. O
+primeiro grava e o segundo falha com erro de chave duplicada.
+
+O que torna o caso perverso: testes com repositório falso nunca pegam isso,
+porque nada é gravado de verdade. O erro só aparece com banco real.
 
 **Referências**
 
@@ -2043,7 +2079,7 @@ tempo de execução, o objeto concreto decide o comportamento.
 A regra prática que a maioria dos times segue: prefira interface e composição à
 herança profunda. Herde quando a relação for realmente "é um tipo de".
 
-**No Novus CRM**
+**Na prática**
 
 As interfaces começam com a letra I, como nos repositórios de cada entidade. A
 herança aparece em cadeia curta: uma classe base de entidade, uma classe que
@@ -2076,7 +2112,7 @@ Duas regras que separam código amador de profissional. Não capture exceção
 genérica para esconder o problema. E não use exceção para controle de fluxo
 esperado, como "registro não encontrado", que é resposta normal e não erro.
 
-**No Novus CRM**
+**Na prática**
 
 A API devolve mensagens de erro num formato padronizado, e algumas dessas
 mensagens são lidas pela tela. Mudar o texto de uma mensagem existente pode
@@ -2109,7 +2145,7 @@ sintaxe vira SQL. Isso é poderoso e perigoso, porque uma consulta inocente pode
 virar um SQL péssimo, ou pior, ser executada em memória depois de trazer a
 tabela inteira.
 
-**No Novus CRM**
+**Na prática**
 
 Toda consulta ao banco é escrita em LINQ. Saber ler o SQL gerado é a habilidade
 que separa quem resolve lentidão de quem só reclama dela.
@@ -2139,7 +2175,7 @@ Armadilhas conhecidas: misturar código síncrono com assíncrono e travar o
 programa, lançar tarefa sem aguardar e perder o erro, e esquecer o
 cancelamento quando a requisição é abortada.
 
-**No Novus CRM**
+**Na prática**
 
 Praticamente todo método que toca banco, fila ou serviço externo é assíncrono. É
 a regra, não a exceção.
@@ -2172,7 +2208,7 @@ de um singleton vaza dados entre usuários.
 Se você vem do Angular, o conceito é familiar. O vocabulário e o tempo de vida é
 que mudam.
 
-**No Novus CRM**
+**Na prática**
 
 Existe um projeto só para esse registro, que liga todas as interfaces às
 implementações. Quando um serviço novo não funciona, a primeira hipótese é
@@ -2198,7 +2234,7 @@ ambiente, variáveis de ambiente e segredos locais.
 Regra absoluta: segredo não entra em arquivo versionado. Em desenvolvimento usa
 um cofre local da própria ferramenta. Em produção vem do orquestrador.
 
-**No Novus CRM**
+**Na prática**
 
 A maioria das funcionalidades novas nasce desligada por configuração, e é ligada
 aos poucos. Isso permite subir o código antes de abrir o recurso.
@@ -2260,7 +2296,7 @@ Os códigos que você vai ver todo dia:
 A distinção entre 401 e 403 confunde e é simples. 401 é "não sei quem você é".
 403 é "sei quem você é e você não pode".
 
-**No Novus CRM**
+**Na prática**
 
 A chamada entre as telas e a API repete automaticamente em erro temporário, como
 502, 503 e 504, mas só para operações que podem ser repetidas com segurança.
@@ -2291,7 +2327,7 @@ lista que possa crescer; e versione a API quando precisar quebrar o contrato.
 efeito extra. `GET`, `PUT` e `DELETE` são. `POST` não é, e por isso um clique
 duplo pode criar dois registros, a não ser que exista uma chave de idempotência.
 
-**No Novus CRM**
+**Na prática**
 
 Boa parte das consultas usa o método POST, porque o filtro é grande demais para
 caber no endereço. Isso tem consequência: nenhum controle pode presumir que POST
@@ -2322,10 +2358,11 @@ que ele seja fino: valida a entrada, chama quem sabe fazer o trabalho e traduz o
 resultado em código HTTP. Regra de negócio dentro de controller é o erro mais
 comum em projeto .NET.
 
-**No Novus CRM**
+**Na prática**
 
-A API tem 174 controllers, um por assunto. Eles seguem o padrão de delegar para
-uma camada de aplicação, onde está a lógica.
+Num produto maduro a API passa de cem controllers, um por assunto. Eles seguem o
+padrão de delegar para uma camada de aplicação, onde está a lógica. Quando um
+controller começa a crescer, quase sempre é regra de negócio no lugar errado.
 
 **Referências**
 
@@ -2352,7 +2389,7 @@ carregar relações que, ao serem serializadas, puxam meio banco junto.
 **Mapeamento** é a conversão entre entidade e DTO. Pode ser escrito à mão, o que
 é explícito e verboso, ou por biblioteca, o que é curto e às vezes mágico demais.
 
-**No Novus CRM**
+**Na prática**
 
 Existe uma camada separada só para os DTOs. O mapeamento usa uma biblioteca, e
 em alguns pontos a conversão é feita direto na consulta, trazendo do banco só as
@@ -2395,14 +2432,15 @@ identidade própria; **objeto de valor** é definido pelos seus dados, como um
 endereço; **agregado** é um conjunto que muda junto e tem uma raiz; **repositório**
 é a porta para buscar e guardar agregados.
 
-**No Novus CRM**
+**Na prática**
 
-A estrutura segue exatamente esse desenho, com nomes em português. Os projetos
-são domínio, aplicação, infraestrutura, registro de dependências e, por fim, os
-serviços que rodam.
+Projetos .NET costumam espelhar esse desenho em projetos separados: domínio,
+aplicação, infraestrutura, registro de dependências e, por fim, os serviços que
+rodam de verdade.
 
-O domínio tem mais de cem pastas, uma por assunto do produto. É a melhor foto do
-que o sistema faz.
+Dica para se orientar em código que você não conhece: a camada de domínio tem
+uma pasta por assunto do negócio. Ler só os nomes dessas pastas é a forma mais
+rápida de descobrir o que o sistema faz.
 
 **Referências**
 
@@ -2430,7 +2468,7 @@ implementa os dois padrões por dentro. Muita gente cria uma camada de
 repositório por cima sem ganho real. Vale saber disso para entender a discussão,
 mas em um projeto existente você segue o padrão que já está lá.
 
-**No Novus CRM**
+**Na prática**
 
 Existe repositório por entidade, com interface declarada na camada de domínio e
 implementação na infraestrutura. Em alguns módulos de relatório há consultas
@@ -2462,7 +2500,7 @@ um comando e o mediador encontra o tratador. Isso deixa os controllers magros e
 facilita acrescentar comportamento transversal, como log e validação, em um
 ponto só.
 
-**No Novus CRM**
+**Na prática**
 
 A separação existe em estilo, com serviços de leitura e de escrita distintos, e
 não como arquitetura formal com dois bancos.
@@ -2486,7 +2524,7 @@ formato, incluindo a página que lista tudo e deixa testar no navegador.
 O ganho vai além da documentação. Com a descrição pronta dá para gerar cliente
 em várias linguagens e validar que a API não quebrou o contrato.
 
-**No Novus CRM**
+**Na prática**
 
 A API tem documentação gerada, e o texto de resumo de cada endpoint acaba numa
 página pública. Por isso esse texto passa pela mesma revisão de escrita que o
@@ -2514,7 +2552,7 @@ direto.
 A mensagem de erro é parte do produto. Ela precisa dizer o que aconteceu e o que
 fazer agora, sem culpar quem clicou e sem vocabulário interno.
 
-**No Novus CRM**
+**Na prática**
 
 Mensagem de erro é tratada como contrato, porque a tela às vezes compara o
 texto. Mudar a frase exige mudar os dois lados juntos. Todo texto que uma pessoa
@@ -2547,7 +2585,7 @@ frágil, então se usa pouco e nos caminhos críticos.
 A pirâmide clássica sugere muitos de unidade, alguns de integração e poucos de
 ponta a ponta.
 
-**No Novus CRM**
+**Na prática**
 
 Existe um ponto cego conhecido e documentado: todos os testes do backend trocam
 o acesso ao banco por uma peça falsa. Isso significa que nenhum teste grava de
@@ -2588,7 +2626,7 @@ todas as cópias. Com a referência, o nome mora em um lugar só.
 Tipos de relação: um para um, um para muitos, e muitos para muitos. A última
 precisa de uma tabela no meio, que guarda os pares.
 
-**No Novus CRM**
+**Na prática**
 
 O banco tem centenas de tabelas, uma para cada assunto do domínio. Quase todas
 têm uma coluna que identifica a empresa dona do registro.
@@ -2616,7 +2654,7 @@ para somar e contar, e `INSERT`, `UPDATE` e `DELETE` para modificar.
 Depois disso, dois assuntos valem o esforço: subconsulta e função de janela, que
 resolvem relatórios complicados sem gambiarra.
 
-**No Novus CRM**
+**Na prática**
 
 Operações pesadas sobre tabelas grandes são feitas em scripts SQL numerados,
 aplicados manualmente numa janela controlada, e não pela ferramenta de migração
@@ -2651,7 +2689,7 @@ Fora do índice, a causa mais comum de lentidão em aplicações é o problema d
 consulta em laço, conhecido como N mais 1: o código busca uma lista e depois
 faz uma consulta por item, somando centenas de idas ao banco.
 
-**No Novus CRM**
+**Na prática**
 
 Existem tabelas grandes bem conhecidas, como mensagens de chat, atendimentos,
 contatos e registros de acesso. Qualquer alteração de estrutura nelas exige
@@ -2705,7 +2743,7 @@ por dentro, busca textual, extensões, e tipos ricos como intervalo e vetor.
 Ferramentas úteis: o cliente de linha de comando `psql` e uma interface gráfica
 como DBeaver ou pgAdmin.
 
-**No Novus CRM**
+**Na prática**
 
 Existe um banco de produção e um de desenvolvimento. O ponto crítico de
 segurança do projeto inteiro mora aqui: a configuração padrão do serviço aponta
@@ -2741,7 +2779,7 @@ As armadilhas clássicas: consulta em laço gerando centenas de idas ao banco;
 trazer colunas demais quando poucas bastariam; e escrever uma consulta que o ORM
 não consegue traduzir, e que então é executada em memória depois de baixar tudo.
 
-**No Novus CRM**
+**Na prática**
 
 Todo acesso a dados passa por aqui, com exceção de alguns relatórios em SQL
 direto. O contexto do banco se chama sessão.
@@ -2775,16 +2813,19 @@ A técnica padrão é expandir e contrair. Primeiro acrescenta o novo sem remove
 velho. Depois muda o código para usar o novo. Só numa terceira etapa remove o
 antigo.
 
-**No Novus CRM**
+**Na prática**
 
-Existe uma regra dura e um incidente registrado por trás dela. As migrações
-rodam quando o serviço sobe, com tempo limite de 30 segundos, em todas as cópias
-ao mesmo tempo, e nada mais inicia até terminar. Uma alteração pesada em tabela
-grande travou o sistema em ciclo de reinício.
+Muitos projetos aplicam as migrações pendentes quando o serviço sobe. É prático
+e esconde uma bomba. A migração roda com tempo limite curto, em todas as cópias
+do serviço ao mesmo tempo, e nada mais inicia até terminar.
 
-Por isso, alteração que não termina em segundos não entra em migração. Vai para
-um script SQL numerado, aplicado por quem publica a versão, numa sessão sem
-limite de tempo.
+O resultado quando a alteração é pesada: ela estoura o tempo limite, o serviço
+não sobe, o orquestrador reinicia, a migração começa de novo. O sistema entra em
+ciclo de reinício e fica fora do ar.
+
+A saída conhecida é separar. Alteração que não termina em segundos sai da
+migração automática e vira um script SQL numerado, aplicado por quem publica a
+versão, numa sessão sem limite de tempo e em horário combinado.
 
 **Referências**
 
@@ -2805,11 +2846,11 @@ com centenas de entidades isso corta segundos do tempo de inicialização.
 
 O preço é que essa versão é uma foto. Ela não se atualiza sozinha.
 
-**No Novus CRM**
+**Na prática**
 
-Esta é a terceira armadilha documentada do projeto. Mudar uma entidade e criar a
-migração não basta. Sem regerar o modelo compilado, a aplicação continua
-enxergando a foto antiga e falha em produção, mesmo com o banco já alterado.
+Esta é uma armadilha silenciosa. Mudar uma entidade e criar a migração não
+basta. Sem regerar o modelo compilado, a aplicação continua enxergando a foto
+antiga e falha em produção, mesmo com o banco já alterado.
 
 Confunde ainda mais porque os comandos de ferramenta enxergam o modelo
 atualizado, então tudo parece correto enquanto você desenvolve.
@@ -2843,7 +2884,7 @@ A proteção usual é um filtro automático aplicado pelo acesso a dados, para q
 caminho seguro seja o padrão. Toda vez que alguém desliga o filtro de propósito,
 por exemplo em rotina administrativa, passa a ser responsável por filtrar à mão.
 
-**No Novus CRM**
+**Na prática**
 
 A estratégia é base compartilhada com coluna de conta. Existe uma classe base
 que acrescenta essa coluna em toda entidade, e um filtro automático ligado ao
@@ -2873,7 +2914,7 @@ Os pontos que afetam o código: coletar só o necessário; guardar pelo tempo
 necessário e apagar depois; permitir exportar e excluir quando a pessoa pedir;
 registrar quem acessou o quê; e nunca colocar esse tipo de dado em log.
 
-**No Novus CRM**
+**Na prática**
 
 Existem rotinas automáticas de expurgo, por exemplo de gravações de voz antigas,
 e registro de auditoria para ações sensíveis.
@@ -2904,7 +2945,7 @@ processo faz o trabalho pesado e avisa o resultado depois.
 Isso muda a conversa com o usuário. Em vez de "pronto", a tela diz "estamos
 processando" e mostra progresso. É mais honesto e mais robusto.
 
-**No Novus CRM**
+**Na prática**
 
 Vários processos vivem fora da requisição: disparo de campanha, sincronização de
 caixa de e-mail, conferência de prazo de ticket, encerramento de conversa
@@ -2933,7 +2974,7 @@ duas vezes a mesma coisa, encerrar com elegância quando receber sinal de
 desligamento, e não rodar em duas cópias ao mesmo tempo quando a tarefa não
 permite.
 
-**No Novus CRM**
+**Na prática**
 
 Existem mais de trinta workers, todos num projeto só. Cada um é ligado ou
 desligado por configuração, o que permite distribuir a carga entre instalações
@@ -2973,7 +3014,7 @@ No RabbitMQ o vocabulário é:
 - **Ack**, a confirmação de que a mensagem foi processada. Sem ela a fila entrega de novo.
 - **Dead letter queue**, para onde vai a mensagem que falhou demais.
 
-**No Novus CRM**
+**Na prática**
 
 O servidor de filas de desenvolvimento é compartilhado pelo time. Isso significa
 que, ao rodar um worker localmente, você pode consumir uma mensagem que era de
@@ -3016,7 +3057,7 @@ para sempre.
 **Ordem**. Fila não garante ordem global na prática. Se a ordem importa, ela
 precisa ser garantida por outro meio.
 
-**No Novus CRM**
+**Na prática**
 
 A tabela de saída existe e tem um worker dedicado publicando o que está lá.
 
@@ -3049,7 +3090,7 @@ Os problemas clássicos de cache, com nome:
 Bibliotecas modernas resolvem parte disso com dois níveis, memória local na
 frente e Redis atrás, mais proteção contra avalanche.
 
-**No Novus CRM**
+**Na prática**
 
 O Redis é usado como cache distribuído e também como ponte entre as cópias da
 API, o que é essencial para o tempo real funcionar.
@@ -3083,15 +3124,17 @@ O problema de escala: se existem três cópias da API, o usuário conectado na
 primeira não recebe o evento gerado na terceira. A solução é um canal
 compartilhado entre as cópias, chamado **backplane**, geralmente feito com Redis.
 
-**No Novus CRM**
+**Na prática**
 
-Existem dois hubs, um para o produto e outro para o widget. Os eventos de tempo
-real avisam a tela sobre mensagem nova, mudança de atendimento e presença de
+Num produto de chat é comum existir mais de um hub, com públicos diferentes. Os
+eventos avisam a tela sobre mensagem nova, mudança de status e presença de
 usuário.
 
-Aqui mora outra armadilha documentada. Criar um evento novo exige registro em
-quatro lugares diferentes do código. Esquecer um deles não quebra só o evento
-novo: o processo que escuta os eventos morre ao subir, e todo o tempo real para.
+A armadilha que se repete: registrar um evento novo costuma exigir mexer em
+vários pontos do código, em arquivos distantes um do outro. Esquecer um deles
+pode não quebrar só o evento novo. Se o processo que escuta os eventos falhar ao
+subir, todo o tempo real para junto. Vale escrever um teste que confira essa
+lista de registros.
 
 **Referências**
 
@@ -3116,7 +3159,7 @@ O que todo receptor de webhook precisa ter: verificar a assinatura para
 confirmar quem mandou; responder rápido e processar depois, porque quem envia
 tem limite de tempo; e aguentar receber o mesmo evento duas vezes.
 
-**No Novus CRM**
+**Na prática**
 
 Os canais de mensagem entram por webhook, e o produto também envia webhooks para
 sistemas dos clientes quando algo acontece na conta deles.
@@ -3143,7 +3186,7 @@ Cuidados que sempre aparecem: fuso horário e horário de verão; o que fazer se
 execução anterior ainda não terminou; e garantir que a tarefa rode uma vez só
 quando existem várias cópias da aplicação.
 
-**No Novus CRM**
+**Na prática**
 
 Há workers de laço com intervalo próprio, mais tarefas agendadas pelo usuário,
 como mensagem programada e lembrete de agendamento. O fuso horário é parte do
@@ -3182,11 +3225,12 @@ A regra que resolve metade dos problemas: a interface esconde por conveniência,
 o servidor nega por segurança. Esconder um botão não protege nada, porque
 qualquer pessoa chama a API direto.
 
-**No Novus CRM**
+**Na prática**
 
-O produto usa permissão por rota e por ação. O painel interno usa papéis, como
-administrador da plataforma, suporte, financeiro e comercial, além dos papéis de
-revenda.
+É comum um mesmo produto usar os dois modelos. A aplicação do cliente controla
+por permissão, fina o bastante para liberar uma ação específica. O painel interno
+controla por papel, porque os cargos são poucos e bem definidos, como
+administrador, suporte e financeiro.
 
 A verificação acontece em três camadas: na tela, na função do servidor e na API.
 É redundância de propósito.
@@ -3220,7 +3264,7 @@ página rodando no navegador.
 Os três tokens: o de acesso prova permissão nas chamadas; o de identidade diz
 quem é a pessoa; o de renovação obtém um novo acesso sem novo login.
 
-**No Novus CRM**
+**Na prática**
 
 O servidor de identidade é o Keycloak. A aplicação principal mantém os tokens no
 servidor, longe do navegador. A página de status faz o fluxo direto no navegador
@@ -3273,7 +3317,7 @@ Vocabulário: **realm** é um reino isolado, com seus usuários e configuraçõe
 **client** é a aplicação que pede autenticação; **role** é o papel atribuído ao
 usuário.
 
-**No Novus CRM**
+**Na prática**
 
 O Keycloak é o servidor de identidade de todas as interfaces. A aplicação não
 guarda senha.
@@ -3306,7 +3350,7 @@ Há ainda o caso especial do conteúdo embutido em iframe de outro domínio. Os
 navegadores passaram a isolar armazenamento nesse cenário, então cookie pode
 simplesmente não funcionar.
 
-**No Novus CRM**
+**Na prática**
 
 A sessão da aplicação principal fica em cookie no servidor da aplicação, e o
 token nunca chega ao navegador. O widget, por rodar em iframe de terceiros, não
@@ -3360,7 +3404,7 @@ um nome assustador.
 a página pode carregar e executar. Com ela bem feita, mesmo que um script
 injetado apareça, o navegador se recusa a rodar.
 
-**No Novus CRM**
+**Na prática**
 
 Existem regras explícitas. Conteúdo de mensagem, nome de contato e texto de
 incidente renderizam sempre como texto. Nas interfaces servidas por arquivo
@@ -3413,10 +3457,13 @@ guarda. O único caminho é trocar a credencial.
 Onde eles devem ficar: em desenvolvimento, num cofre local da ferramenta; em
 produção, no gerenciador de segredos do orquestrador ou da nuvem.
 
-**No Novus CRM**
+**Na prática**
 
-A regra está escrita no guia do repositório e existe pelo menos um caso
-documentado de credencial que precisou ser trocada.
+Todo time que trabalha há alguns anos tem pelo menos um caso de credencial que
+vazou e precisou ser trocada. É quase um rito de passagem, e é evitável.
+
+Vale configurar uma varredura automática de segredos na esteira de build. Ela
+barra o envio antes de o problema existir, e custa poucos minutos para ligar.
 
 **Referências**
 
@@ -3469,7 +3516,7 @@ Conceitos do dia a dia: **volume** guarda dado que precisa sobreviver ao
 contêiner; **rede** liga contêineres entre si; **porta** expõe o serviço para
 fora; **registry** é onde as imagens ficam guardadas.
 
-**No Novus CRM**
+**Na prática**
 
 Cada aplicação tem a própria imagem. As de interface estática são servidas por
 um servidor web simples dentro do contêiner.
@@ -3501,7 +3548,7 @@ não carrega compilador nem código fonte.
 **Contexto de build** é a pasta que o Docker enxerga. Definir contexto grande
 demais deixa o build lento.
 
-**No Novus CRM**
+**Na prática**
 
 O contexto muda por aplicação, de propósito. As interfaces precisam do arquivo
 de trava que está na raiz, então o contexto é a raiz. O backend precisa dos
@@ -3528,13 +3575,15 @@ Aspire resolve isso descrevendo a composição em código. Você diz quais proje
 existem e de que dependem, e a ferramenta sobe tudo na ordem certa, com as
 portas organizadas, um painel para acompanhar e telemetria já ligada.
 
-**No Novus CRM**
+**Na prática**
 
-Um único comando sobe a API, os workers, o serviço de inteligência artificial, o
-monitor de status e um cache em contêiner. O painel mostra o endereço de cada um.
+Um único comando sobe a API, os processos de segundo plano, os serviços
+auxiliares e um cache em contêiner. O painel mostra o endereço de cada um e a
+telemetria já vem ligada.
 
-Há um modo especial de teste isolado, que sobe também um servidor de filas local
-em vez de usar o compartilhado do time.
+Vale prever um modo isolado, que sobe também o servidor de filas local em vez de
+usar o compartilhado pelo time. Sem isso, você consome mensagens que eram de
+outra pessoa e fica horas investigando um fantasma.
 
 **Referências**
 
@@ -3582,7 +3631,7 @@ cabeçalhos de segurança, o cache do navegador e o redirecionamento de rotas pa
 o arquivo principal, que é o que faz uma aplicação de página única funcionar ao
 atualizar a página.
 
-**No Novus CRM**
+**Na prática**
 
 O site de marketing, a página de status e o widget são servidos por nginx. Cada
 um tem a própria configuração de segurança, e elas são diferentes de propósito.
@@ -3611,16 +3660,20 @@ registro.
 O ganho não é automação por si. É que o erro aparece em minutos e não em
 semanas, e que publicar deixa de ser um evento tenso.
 
-**No Novus CRM**
+**Na prática**
 
-A esteira roda no Azure DevOps, numa instalação própria da empresa. Existe uma
-definição por artefato publicável, cada uma com filtro de pasta, para que uma
-mudança de tela não dispare o build do backend.
+Em monorepo, o padrão é uma definição de esteira por artefato publicável, cada
+uma com filtro de pasta. Assim uma mudança de tela não dispara o build do
+backend, e o tempo de espera cai.
 
-Um detalhe específico desse ambiente: o filtro de pasta funciona por prefixo, e
-curingas não são confiáveis. Toda aplicação que consome os pacotes compartilhados
-precisa incluir a pasta deles no filtro, senão a mudança no pacote não gera
-build.
+O detalhe que quebra na primeira semana: o filtro precisa incluir também as
+pastas dos pacotes compartilhados. Sem isso, mudar um componente do design
+system não gera build de nenhuma aplicação, e a correção só aparece no próximo
+commit que tocar a aplicação por acaso.
+
+Vale conferir como o seu servidor trata curinga no filtro. Em algumas
+instalações o casamento é por prefixo e o asterisco não funciona como você
+espera.
 
 **Referências**
 
@@ -3649,7 +3702,7 @@ o serviço":
 
 A última é a mais usada no dia a dia, porque separa publicar de liberar.
 
-**No Novus CRM**
+**Na prática**
 
 Recurso novo costuma nascer escondido e ser liberado por conta, não por
 ambiente. Existe um padrão documentado com dois pontos de corte obrigatórios: um
@@ -3685,7 +3738,7 @@ qualidade acordado, como "99,9% das requisições abaixo de 300 milissegundos". 
 partir dele nasce o orçamento de erro, que diz quanto de falha é tolerável antes
 de parar de lançar novidade e voltar a arrumar a casa.
 
-**No Novus CRM**
+**Na prática**
 
 Existe um serviço separado que monitora os demais, coleta verificações de saúde
 e batimentos dos workers, calcula disponibilidade e abre incidente
@@ -3712,7 +3765,7 @@ troca o destino sem reescrever.
 serviços em intervalos regulares e guarda a série temporal. Em cima dele
 costuma rodar uma ferramenta de painel, como o Grafana.
 
-**No Novus CRM**
+**Na prática**
 
 O backend já está instrumentado com OpenTelemetry e expõe métricas no formato do
 Prometheus.
@@ -3726,10 +3779,15 @@ Prometheus.
 
 ---
 
-## Parte 14. O domínio do produto
+## Parte 14. O domínio: CRM e atendimento
 
 Conhecimento técnico sem conhecimento do negócio produz código que funciona e
 resolve o problema errado. Esta parte é curta e importa muito.
+
+O domínio usado aqui é o de CRM e atendimento ao cliente, porque é um dos mais
+comuns no mercado de software brasileiro. Se você trabalhar com outro domínio, a
+lição que fica é o método: aprenda o vocabulário do negócio antes de escrever
+código para ele.
 
 ### 14.1 O que é um CRM de atendimento
 
@@ -3750,10 +3808,12 @@ Em volta disso vêm os módulos que todo produto do tipo tem: fila de atendiment
 distribuição entre atendentes, tickets com prazo, respostas prontas,
 automações, relatórios e pesquisa de satisfação.
 
-**No Novus CRM**
+**Na prática**
 
-O produto junta tudo isso mais loja virtual, campanhas de disparo, chatbot
-visual, telefonia e recursos de inteligência artificial.
+Os produtos maiores desse mercado vão além do atendimento e acrescentam loja
+virtual, campanhas de disparo, chatbot visual, telefonia e recursos de
+inteligência artificial. Isso explica por que um sistema de chat acaba
+precisando de fila, cache, tempo real e processamento em segundo plano.
 
 **Referências**
 
@@ -3761,20 +3821,20 @@ visual, telefonia e recursos de inteligência artificial.
 - 📄 [Atendimento omnichannel explicado](https://www.zendesk.com.br/blog/omnichannel-customer-service/)
 - 🔎 [Busca: o que é CRM e como funciona](https://www.youtube.com/results?search_query=o+que+%C3%A9+crm+e+como+funciona)
 
-### 14.2 Vocabulário da plataforma
+### 14.2 Vocabulário do domínio
 
 `essencial` · 1h
 
 **O que é**
 
-As palavras que o suporte, o produto e o código usam. Decorar isso acelera
-qualquer conversa.
+As palavras que o suporte, o produto e o código usam num sistema de atendimento.
+Decorar isso acelera qualquer conversa.
 
 | Palavra | Significado |
 |---|---|
 | Conta | A empresa cliente. É a unidade de isolamento dos dados. |
 | Contato | A pessoa do outro lado da conversa. |
-| Atendimento | Uma conversa com um contato, do início ao fim. Na interface o módulo se chama Chat. |
+| Atendimento | Uma conversa com um contato, do início ao fim. |
 | Ticket | Um chamado de suporte, com prazo, urgência e histórico. Diferente do atendimento, que é a conversa. |
 | SLA | O prazo acordado para primeira resposta e para solução. |
 | Canal | Por onde a conversa chega: WhatsApp, Instagram, e-mail, webchat, telefone. |
@@ -3785,14 +3845,18 @@ qualquer conversa.
 | Departamento | O grupo de atendentes que recebe determinado tipo de conversa. |
 | Macro | Conjunto de ações aplicadas de uma vez a um atendimento. |
 | Resposta rápida | Texto pronto que o atendente insere com poucos cliques. |
-| White-label | Revenda da plataforma com marca própria. |
+| White-label | Revenda do sistema com a marca do revendedor. |
 | Plugin | Extensão que roda dentro do produto, numa janela embutida. |
-| Luma | A assistente de inteligência artificial da plataforma. |
-| Backoffice | O painel interno que enxerga todas as contas. |
+| Backoffice | Painel interno, usado pelo time que opera o sistema, com visão de todas as contas. |
 
-Um detalhe de história que confunde quem lê o código: o módulo passou a se
-chamar Chat na interface, mas os nomes internos continuam usando atendimento,
-porque são contrato com a API e com integrações existentes.
+Um detalhe que confunde quem lê código de produto antigo: o nome na tela e o
+nome no código costumam divergir. Um módulo é renomeado na interface por decisão
+de produto, e os identificadores internos ficam como estavam, porque são
+contrato com a API e com integrações de clientes.
+
+Isso não é desleixo, é escolha. Trocar o nome interno quebraria quem já consome.
+Quando encontrar essa divergência, procure a decisão registrada antes de
+"corrigir".
 
 ### 14.3 Canais de mensagem
 
@@ -3815,7 +3879,7 @@ de domínio conhecidas como SPF, DKIM e DMARC.
 
 **Webchat**. É o widget colado no site do cliente.
 
-**No Novus CRM**
+**Na prática**
 
 Os canais entram por webhook. O produto controla o ritmo do disparo por canal,
 acompanha o custo das conversas do WhatsApp e trata o caso de o contato
@@ -3850,7 +3914,7 @@ tocar numa fila, passar por um menu de opções, respeitar horário de atendimen
 **WebRTC** é a tecnologia que leva áudio e vídeo até o navegador, sem plugin.
 **LiveKit** é uma plataforma construída sobre isso.
 
-**No Novus CRM**
+**Na prática**
 
 Existem dois caminhos. No direto, a operadora entrega a chamada ao LiveKit, que
 leva o áudio ao navegador do atendente. No caminho com central, a ligação passa
@@ -3896,14 +3960,16 @@ sobre conteúdo que o modelo nunca viu.
 **Agente** é um modelo que pode chamar ferramentas, como consultar um pedido ou
 abrir um ticket, e decidir os passos.
 
-**No Novus CRM**
+**Na prática**
 
-Existe um serviço separado só para inteligência artificial. Os recursos incluem
-assistente de atendimento, triagem automática, resumo de conversa, base de
-conhecimento com busca por significado e a assistente da plataforma.
+Em produto de atendimento, a IA costuma aparecer como assistente para quem
+atende, triagem automática da conversa, resumo do histórico e busca por
+significado na base de conhecimento.
 
-Há também controle de consumo, porque cada chamada custa e o plano do cliente
-tem cota.
+Dois detalhes que sempre surgem na implementação. O serviço de IA costuma ficar
+separado do resto, porque escala e falha de forma diferente. E precisa de
+controle de consumo, porque cada chamada custa dinheiro e o plano do cliente tem
+cota.
 
 **Referências**
 
@@ -3926,7 +3992,7 @@ pagamento, período de teste, cupom e bloqueio por inadimplência.
 Nada disso é difícil isoladamente. Juntos, formam uma das áreas mais sujeitas a
 erro de um sistema, porque envolve dinheiro, data e exceção.
 
-**No Novus CRM**
+**Na prática**
 
 Existem plano, compra de recursos adicionais, cupom, meio de pagamento,
 gateway e um modo de somente leitura quando a conta fica bloqueada. Esse modo
@@ -3957,12 +4023,16 @@ O ganho aparece quando a tarefa é grande ou toca várias partes. Discutir o
 desenho em texto custa minutos. Descobrir o desenho errado depois de uma semana
 de código custa a semana.
 
-**No Novus CRM**
+**Na prática**
 
-Existe uma pasta de especificações no repositório. Uma mudança nasce como
-proposta, ganha desenho e lista de tarefas, e no fim é arquivada junto com o que
-foi decidido. As decisões ficam registradas com o motivo, o que evita que
-alguém "corrija" no ano seguinte uma escolha que foi deliberada.
+O formato mais comum é uma pasta de especificações dentro do próprio
+repositório, versionada junto com o código. Uma mudança nasce como proposta,
+ganha desenho e lista de tarefas, e no fim é arquivada junto com o que foi
+decidido.
+
+O maior ganho aparece depois. Com a decisão registrada e o motivo junto, ninguém
+"corrige" no ano seguinte uma escolha que foi deliberada. É o remédio contra a
+pergunta "por que isso está assim?" que ninguém sabe responder.
 
 **Referências**
 
@@ -4018,7 +4088,7 @@ As regras de estilo do projeto, que valem para qualquer texto em português:
 - Sem enchimento como "é possível", "através de" ou "vale destacar que".
 - Voz ativa e segunda pessoa quando fala com o usuário.
 
-**No Novus CRM**
+**Na prática**
 
 Todo texto novo que uma pessoa vai ler passa por essa revisão antes de a tarefa
 ser considerada pronta. Código, nome de variável, log e comentário técnico ficam
@@ -4048,12 +4118,16 @@ Existe uma prática crescente de guardar as regras do projeto num arquivo que o
 assistente lê automaticamente. Assim ele segue as convenções da casa em vez das
 convenções genéricas da internet.
 
-**No Novus CRM**
+**Na prática**
 
-O repositório tem essa camada montada. Há um guia por área que o assistente lê
-antes de editar, procedimentos prontos para tarefas repetitivas, registros de
-decisões passadas e travas automáticas que bloqueiam comando perigoso, como
-subir a API com uma alteração de banco pendente.
+Um repositório bem preparado para isso costuma ter quatro coisas. Um guia por
+área, que o assistente lê antes de editar aquela pasta. Procedimentos prontos
+para tarefas repetitivas. Registros de decisões passadas, com o motivo. E travas
+automáticas que bloqueiam comando perigoso, como subir a aplicação apontando
+para o banco errado.
+
+Vale montar isso mesmo que você trabalhe sozinho. O guia escrito para a máquina
+acaba sendo o melhor material para a próxima pessoa que chegar.
 
 **Referências**
 
@@ -4233,7 +4307,7 @@ quem está começando.
 
 | Termo | O que é |
 |---|---|
-| PostgreSQL | Banco relacional usado pela plataforma. |
+| PostgreSQL | Banco de dados relacional de código aberto, muito usado no mercado. |
 | Tabela, coluna, linha | Tabela é o conjunto, coluna é o campo, linha é o registro. |
 | Chave primária | Coluna que identifica a linha de forma única. |
 | Chave estrangeira | Coluna que aponta para a chave primária de outra tabela. |
@@ -4310,13 +4384,13 @@ quem está começando.
 | SQL injection | Valor do usuário mudando o significado de uma consulta. |
 | OWASP Top 10 | Lista das dez categorias de falha mais relevantes em aplicações web. |
 
-#### Produto
+#### Domínio de CRM e atendimento
 
 | Termo | O que é |
 |---|---|
 | Conta | A empresa cliente. Unidade de isolamento dos dados. |
 | Contato | A pessoa do outro lado da conversa. |
-| Atendimento | Uma conversa com um contato. Na interface, o módulo Chat. |
+| Atendimento | Uma conversa com um contato, do início ao fim. |
 | Ticket | Chamado de suporte, com prazo e histórico. |
 | SLA | Prazo acordado para resposta e solução. |
 | Canal | Por onde a conversa chega. |
